@@ -4,6 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.yet.spring.core.bean.Client;
+import com.yet.spring.core.log.Event;
 import com.yet.spring.core.log.EventLogger;
 
 public class App {
@@ -12,6 +13,8 @@ public class App {
 	
 	private EventLogger eventLogger;
 	
+	private static ApplicationContext ctx;
+	
 	public App(Client client, EventLogger eventLogger) {
 		this.client = client;
 		this.eventLogger = eventLogger;
@@ -19,7 +22,7 @@ public class App {
 		
 	public static void main(String[] args) {
 		
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+		ctx = new ClassPathXmlApplicationContext("spring.xml");
 		App app = ctx.getBean(App.class);
 				
 		app.logEvent("1 said: \"You are not prepeared!\"");
@@ -27,7 +30,9 @@ public class App {
 	
 	private void logEvent(String message) {
 		String processedMessage = message.replaceAll(client.getId(), client.getName());
-		eventLogger.logEvent(processedMessage);
+		Event event = ctx.getBean(Event.class);
+		event.setMessage(processedMessage);
+		eventLogger.logEvent(event);
 	}
 
 }
