@@ -12,11 +12,13 @@
 
 	<bean id="eventLogger" class="com.yet.spring.core.log.ConsoleEventLogger" />
 	
-	<bean id="fileEventLogget" class="com.yet.spring.core.log.FileEventLogger" init-method="init"/>
+	<bean id="fileEventLogget" class="com.yet.spring.core.log.FileEventLogger" init-method="init">
+		<constructor-arg value="app_log.log"/>
+	</bean>
 
 	<bean id="app" class="com.yet.spring.core.App">
 		<constructor-arg ref="client" />
-		<constructor-arg ref="eventLogger" />
+		<constructor-arg ref="fileEventLogget" />
 	</bean>
 	
 	<bean id="event" class="com.yet.spring.core.log.Event" scope="prototype">
