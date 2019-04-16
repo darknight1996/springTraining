@@ -11,6 +11,8 @@
 	</bean>
 
 	<bean id="eventLogger" class="com.yet.spring.core.log.ConsoleEventLogger" />
+	
+	<bean id="fileEventLogget" class="com.yet.spring.core.log.FileEventLogger" init-method="init"/>
 
 	<bean id="app" class="com.yet.spring.core.App">
 		<constructor-arg ref="client" />
