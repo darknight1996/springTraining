@@ -1,6 +1,6 @@
 package com.yet.spring.core;
 
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.yet.spring.core.bean.Client;
@@ -13,7 +13,7 @@ public class App {
 	
 	private EventLogger eventLogger;
 	
-	private static ApplicationContext ctx;
+	private static ConfigurableApplicationContext ctx;
 	
 	public App(Client client, EventLogger eventLogger) {
 		this.client = client;
@@ -33,6 +33,8 @@ public class App {
 		Event event = ctx.getBean(Event.class);
 		event.setMessage(processedMessage);
 		eventLogger.logEvent(event);
+		
+		ctx.close();
 	}
-
+	
 }

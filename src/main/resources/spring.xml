@@ -15,10 +15,16 @@
 	<bean id="fileEventLogget" class="com.yet.spring.core.log.FileEventLogger" init-method="init">
 		<constructor-arg value="app_log.log"/>
 	</bean>
+	
+	<bean id="cacheFileEventLogger" class="com.yet.spring.core.log.CacheFileEventLogger" 
+		init-method="init" destroy-method="destroy">
+		<constructor-arg value="app_log.log"/>
+		<constructor-arg value="2"/>
+	</bean>
 
 	<bean id="app" class="com.yet.spring.core.App">
 		<constructor-arg ref="client" />
-		<constructor-arg ref="fileEventLogget" />
+		<constructor-arg ref="cacheFileEventLogger" />
 	</bean>
 	
 	<bean id="event" class="com.yet.spring.core.log.Event" scope="prototype">
