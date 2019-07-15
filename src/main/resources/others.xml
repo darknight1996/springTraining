@@ -5,7 +5,14 @@
  		http://www.springframework.org/schema/beans
  		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
-	<import resource="loggers.xml" />
-	<import resource="others.xml" />
+	<bean id="client" class="com.yet.spring.core.bean.Client">
+		<constructor-arg value="1"/>
+		<constructor-arg value="Illidan Stormrage"/>
+	</bean>
 
+	<bean id="app" class="com.yet.spring.core.App">
+		<constructor-arg ref="client" />
+		<constructor-arg ref="cacheFileEventLogger" />
+	</bean>
+	
 </beans>
