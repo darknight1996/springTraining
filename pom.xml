@@ -4,7 +4,7 @@
   <artifactId>com.yet.spring.core</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 	<properties>
-		<spring.version>3.2.13.RELEASE</spring.version>
+		<spring.version>5.2.22.RELEASE</spring.version>
 	</properties>
 	<dependencies>
 		<dependency>
